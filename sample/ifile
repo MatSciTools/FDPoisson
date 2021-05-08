@@ -1,0 +1,9 @@
+Dimension 1  # Choose from 1,2,3
+NX 30
+Xmin -1
+Xmax 1
+BCmin 1.0
+BCmax 1.0
+FxType 1
+Degree 0
+PCoeff 1
