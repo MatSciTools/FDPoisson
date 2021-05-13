@@ -3,13 +3,14 @@ module InputHandler
 public :: getInputData, &
           getDimension, &
           get1DParameters, &
+          get2DParameters, &
           getPolynomialParams
   
-       interface getKeyValue
+      interface getKeyValue
           module procedure getKeyValue_r
           module procedure getKeyValue_i
           module procedure getKeyValue_str
-       end interface getKeyValue
+      end interface getKeyValue
 
 private
    integer, parameter :: int_val = kind(1)
@@ -129,16 +130,33 @@ contains
  
    end subroutine get1DParameters
 !  ------------------------------------------------------------------
-   subroutine getPolynomialParams(degree, pcoeff)
+   subroutine get2DParameters(nx, ny, xmin, xmax, ymin, ymax, fxchoice)
+!  ------------------------------------------------------------------
+
+   integer (kind=int_val), intent(out) :: nx, ny, fxchoice
+   real (kind=real_val), intent(out) ::  xmin, xmax, ymin, ymax
+
+   call getKeyValue("NX", nx)
+   call getKeyValue("NY", ny)
+   call getKeyValue("Xmin", xmin)
+   call getKeyValue("Xmax", xmax)
+   call getKeyValue("Ymin", ymin)
+   call getKeyValue("Ymax", ymax)
+   call getKeyValue("FxType", fxchoice)
+
+   end subroutine get2DParameters
+!  ------------------------------------------------------------------
+   subroutine getPolynomialParams(str_deg, str_coeff,degree,pcoeff)
 !  ------------------------------------------------------------------
  
+   character (len=*), intent(in) :: str_deg, str_coeff
    real (kind=real_val), allocatable, intent(out) :: pcoeff(:)
    integer (kind=int_val), intent(out) :: degree
    character (len=letter_limit) :: raw_pcoeff
    integer (kind=int_val) :: idx, i, length
 
-   call getKeyValue("Degree", degree)
-   call getKeyValue("PCoeff", raw_pcoeff)
+   call getKeyValue(str_deg, degree)
+   call getKeyValue(str_coeff, raw_pcoeff)
 
    length = degree + 1
    allocate(pcoeff(length))
