@@ -74,7 +74,8 @@ contains
        fx(iter) = 0
      enddo
    else if (fxchoice == 1) then
-     call getPolynomialParams(degree, pcoeff)
+!    Polynomial Charge Density. 
+     call getPolynomialParams("Degree", "PCoeff", degree, pcoeff)
      length = degree + 1
      do iter1 = 1, length
        temp_coeff = pcoeff(iter1)
