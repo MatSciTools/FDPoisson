@@ -32,12 +32,13 @@ contains
 
    end subroutine output1DSolution
 !  -------------------------------------------------------------
-   subroutine output2DSolution(x, y, phi)
+   subroutine output2DSolution(x, y, phi, Ex, Ey)
 !  -------------------------------------------------------------
 
    real (kind=real_val), intent(in), pointer :: x(:)
    real (kind=real_val), intent(in), pointer :: y(:)
    real (kind=real_val), intent(in), pointer :: phi(:,:)
+   real (kind=real_val), intent(in), pointer :: Ex(:,:), Ey(:,:)
    integer (kind=int_val) :: i, j, nx, ny
    character (len=20) :: outfile   
 
@@ -47,11 +48,13 @@ contains
    open(2, file=outfile, action='write')
    write(2,*) "          x             ", &
               "          y             ", &
-              "         Phi            "
+              "         Phi            ", &
+              "          Ex            ", &
+              "          Ey            "
 
    do j = 1, ny
      do i = 1, nx
-       write(2,*) x(i), y(j), phi(j, i)
+       write(2,*) x(i), y(j), phi(j, i), Ex(j,i), Ey(j,i)
      enddo
    enddo
 
