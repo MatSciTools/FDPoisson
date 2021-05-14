@@ -21,7 +21,8 @@ contains
 !  ----------------------------------------------------------
    subroutine init2DSolver()
 !  ----------------------------------------------------------
-   
+!  Initialize variables   
+
    use InputHandler, only : get2DParameters 
    
    integer (kind=int_val) :: i, j
@@ -76,6 +77,7 @@ contains
 !  ----------------------------------------------------------
    subroutine calfxy(fxchoice)
 !  ----------------------------------------------------------
+!  Get polynomial from input data and populate fxy matrix
 
    use InputHandler, only : getPolynomialParams
    integer (kind=int_val), intent(in) :: fxchoice
@@ -124,6 +126,7 @@ contains
 !  ----------------------------------------------------------
    subroutine calBCFunction(dir)
 !  ----------------------------------------------------------
+!  Get the functions associated with the Boundary Conditions
 
    use InputHandler, only : getPolynomialParams
 
@@ -157,6 +160,7 @@ contains
 !  ----------------------------------------------------------
    subroutine calBCVector(dx, dy)
 !  ----------------------------------------------------------
+!  Calculate the Boundary Condition Vectors used in the calculation
 
    real (kind=real_val), intent(in) :: dx, dy
    integer (kind=int_val) :: iter
@@ -175,6 +179,7 @@ contains
 !  ----------------------------------------------------------
    subroutine calCoeffMatrix(dx, dy)
 !  ----------------------------------------------------------
+!  Calculation Finite Difference Coefficient Matrix
 
    real (kind=real_val), intent(in) :: dx, dy
    integer (kind=int_val) :: iter1, iter2
@@ -203,6 +208,7 @@ contains
 !  ----------------------------------------------------------
    subroutine solve2DSystem(xp, yp, solp, Fieldx, Fieldy)
 !  ----------------------------------------------------------
+!  Invert matrix, find potential and field
 
    real (kind=real_val), intent(out), pointer :: xp(:), yp(:)
    real (kind=real_val), intent(out), pointer :: solp(:,:)
