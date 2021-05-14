@@ -10,7 +10,8 @@ program fdpoisson
    integer (kind=int_val) :: dval
    real (kind=real_val), pointer :: sol1D(:), sol2D(:,:)
    real (kind=real_val), pointer :: x(:), y(:)
-   real (kind=real_val), pointer :: Ex(:)
+   real (kind=real_val), pointer :: Ex1D(:)
+   real (kind=real_val), pointer :: Ex2D(:,:), Ey2D(:,:)
 
    call getInputData()
    dval = getDimension()
@@ -19,13 +20,13 @@ program fdpoisson
    if (dval == 1) then
 !    1D Poisson Equation needs to be solved
      call init1DSolver()
-     call solve1DSystem(x, sol1D, Ex)
-     call output1DSolution(x, sol1D, Ex) 
+     call solve1DSystem(x, sol1D, Ex1D)
+     call output1DSolution(x, sol1D, Ex1D) 
    else if (dval == 2) then
 !    2D Poisson Equation needs to be solved
      call init2DSolver()
-     call solve2DSystem(x, y, sol2D)
-     call output2DSolution(x, y, sol2D)
+     call solve2DSystem(x, y, sol2D, Ex2D, Ey2D)
+     call output2DSolution(x, y, sol2D, Ex2D, Ey2D)
    endif
  
    write(*,*) "Potential calculated succesfully and stored in file: potential"
