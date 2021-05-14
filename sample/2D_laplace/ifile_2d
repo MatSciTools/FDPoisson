@@ -1,0 +1,20 @@
+Dimension 2  # Choose from 1,2,3
+NX 50
+NY 50
+Xmin -1
+Xmax 1
+Ymin -1
+Ymax 1
+BCX1Degree 0
+BCX1Coeff 1
+BCX2Degree 0
+BCX2Coeff 5
+BCY1Degree 1
+BCY1Coeff 3|2
+BCY2Degree 1
+BCY2Coeff 3|2
+FxType 0
+XDegree 2
+XPCoeff -1|0|1
+YDegree 2
+YPCoeff -1|0|1

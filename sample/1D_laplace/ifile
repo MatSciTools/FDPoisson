@@ -1,0 +1,7 @@
+Dimension 1  # Choose from 1,2
+NX 10
+Xmin -1
+Xmax 1
+BCmin 1.0
+BCmax -1.0
+FxType 0
