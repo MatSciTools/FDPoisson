@@ -1,5 +1,7 @@
 # FDPoisson - Finite Difference code to solve Poisson Equation
 
+
+
 ## Features
 The code can obtain the 1D/2D potential and electric field for polynomial charge densities (the degree of the polynomial and the coefficients have to be specified in the input file). We are currently working on 3D expansion.
 
@@ -26,4 +28,4 @@ git clone https://github.com/vishnu2709/FDPoisson.git
 
 ## Usage Instructions
 
-Detailed instructions on using FDPoisson are given in the usage.pdf document in the docs/ folder. Input/output files for certain testcases can be found in the sample/ folder. Additionally, the utils/ folder contains python scripts that may be used to make graphs from the obtained potential/field
+Detailed instructions on using FDPoisson are given in the usage_guide.pdf document in the docs/ folder. Input/output files for certain testcases can be found in the sample/ folder. Additionally, the utils/ folder contains python scripts that may be used to make graphs from the obtained potential/field. The utils folder also contains FD_derivation.pdf, which contains the mathematical derivation for the finite difference coefficient matrices.
