@@ -28,4 +28,4 @@ git clone https://github.com/vishnu2709/FDPoisson.git
 
 ## Usage Instructions
 
-Detailed instructions on using FDPoisson are given in the usage_guide.pdf document in the docs/ folder. Input/output files for certain testcases can be found in the sample/ folder. Additionally, the utils/ folder contains python scripts that may be used to make graphs from the obtained potential/field. The utils folder also contains FD_derivation.pdf, which contains the mathematical derivation for the finite difference coefficient matrices.
+Detailed instructions on using FDPoisson are given in the usage_guide.pdf document in the docs folder. The docs folder also contains FD_derivation.pdf, which contains the mathematical derivation for the finite difference coefficient matrices. Input/output files for certain testcases can be found in the sample folder. Additionally, the utils folder contains python scripts that may be used to make graphs from the obtained potential/field. 
