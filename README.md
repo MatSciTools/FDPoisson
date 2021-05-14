@@ -3,7 +3,7 @@
 
 
 ## Features
-The code can obtain the 1D/2D potential and electric field for polynomial charge densities (the degree of the polynomial and the coefficients have to be specified in the input file). We are currently working on 3D expansion.
+The code can obtain the 1D/2D potential and electric field for polynomial charge densities (the degree of the polynomial and the coefficients have to be specified in the input file) and Dirichlet Boundary Conditions. We are currently working on 3D expansion.
 
 ## Installation
 
