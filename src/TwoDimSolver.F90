@@ -7,6 +7,7 @@ private
    integer, parameter :: int_val = kind(1)
    integer, parameter :: real_val = kind(1.0d0)
    integer (kind=int_val) :: nx, ny, mtx, mty, matsize, fxchoice
+   real (kind=real_val) :: dx, dy
    real (kind=real_val), allocatable, target :: x(:)
    real (kind=real_val), allocatable, target :: y(:)
    real (kind=real_val), allocatable, target :: phi(:,:)
@@ -24,7 +25,7 @@ contains
    use InputHandler, only : get2DParameters 
    
    integer (kind=int_val) :: i, j
-   real (kind=real_val) :: dx, dy, xmin, xmax, ymin, ymax
+   real (kind=real_val) :: xmin, xmax, ymin, ymax
    
    call get2DParameters(nx, ny, xmin, xmax, ymin, ymax, fxchoice)
    
@@ -41,6 +42,7 @@ contains
    phi = 0
    bcx = 0; bcvecx = 0
    bcy = 0; bcvecy = 0; fxy = 0
+   Ex = 0; Ey = 0
    x(1) = xmin
    do i = 2, nx-1
      x(i) = x(i-1) + dx
@@ -199,11 +201,12 @@ contains
 
    end subroutine calCoeffMatrix
 !  ----------------------------------------------------------
-   subroutine solve2DSystem(xp, yp, solp)
+   subroutine solve2DSystem(xp, yp, solp, Fieldx, Fieldy)
 !  ----------------------------------------------------------
 
    real (kind=real_val), intent(out), pointer :: xp(:), yp(:)
    real (kind=real_val), intent(out), pointer :: solp(:,:)
+   real (kind=real_val), intent(out), pointer :: Fieldx(:,:), Fieldy(:,:)
    real (kind=real_val) :: sol(matsize)
    integer (kind=int_val) :: info
    integer (kind=int_val) :: nb = 16
@@ -233,7 +236,25 @@ contains
      enddo 
    enddo
 
+   do j = 1, ny
+     Ex(j,1) = (0.5/dx)*(4*phi(j,2) - 3*phi(j,1) - phi(j,3))
+     do i = 2, nx-1
+       Ex(j,i) = (0.5/dx)*(phi(j,i+1) - phi(j,i-1))
+     enddo
+     Ex(j,nx) = (0.5/dx)*(phi(j,nx-2) + 3*phi(j,nx) - 4*phi(j,nx-1))
+   enddo
+
+   do j = 1, nx
+     Ey(1, j) = (0.5/dy)*(4*phi(2,j) - 3*phi(1,j) - phi(3, j))
+     do i = 2, ny-1
+       Ey(i, j) = (0.5/dy)*(phi(i+1,j) - phi(i-1,j))
+     enddo
+     Ey(ny, j) = (0.5/dy)*(phi(ny-2,j) + 3*phi(ny,j) - 4*phi(ny-1,j))
+   enddo
+
    solp => phi
+   Fieldx => Ex
+   Fieldy => Ey
 
    end subroutine solve2DSystem
 !  ----------------------------------------------------------
