@@ -22,7 +22,7 @@ git clone https://github.com/vishnu2709/FDPoisson.git
       make </code> <br> <code>
       make install
      </code> <br>
-     Note that gfortran will be used by default, if you want to use an alternate fortran compiler, modify the FC variable in the Makefile to the desired compiler (eg mpif90)
+     Note that gfortran will be used by default, if you want to use an alternate fortran compiler, modify the FC variable in the Makefile to the desired compiler
 </ol>
    
 
